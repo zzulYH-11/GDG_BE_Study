@@ -1,10 +1,9 @@
-# 백엔드 스터디 1주차 WIL
 
 # 1. 1주차 학습 내용
 
 ---
 
-# 웹(Web)이란?
+## 웹(Web)이란?
 
 인터넷 - 전 세계 컴퓨터와 기기를 연결하는 거대한 글로벌 네트워크 
 
@@ -12,7 +11,7 @@
 
 ---
 
-# 클라이언트 - 서버 모델
+## 클라이언트 - 서버 모델
 
 웹이 동작하는 원리에 대해 알아보자.
 
@@ -20,7 +19,7 @@
 
 서버 - 클라이언트의 요청을 받아 처리하고, 그에 대한 응답을 반환
 
-# URL이란?
+## URL이란?
 
 URL( Uniform Resource Locator )은 웹 상에서 특정 자원(웹페이지, 문서, 이미지 등)의 위치를 나타내는 웹의 고유 주소 체계이다. 
 
@@ -41,7 +40,7 @@ http, https 등
 `Query` - 서버에 추가적인 정보를 보내는 파라미터. ? 뒤에 key-value 형식으로 나열
 ?topic=pizza&size=large
 
-# HTTP (HyperText Transper Protocal)
+## HTTP (HyperText Transper Protocal)
 
  : 웹에서 데이터를 주고받는 서버 - 클라이언트 모델의 프로토콜(규칙, 약속)
 클라이언트의 요청과 서버의 응답을 통해 작동
@@ -49,7 +48,7 @@ http, https 등
 - 무상태성(Stateless) - 서버는 클라이언트의 이전 요청을 저장하지 않고, 매 요청을 독립적으로 처리
 - 비연결성(Connectionless) - 클라이언트가 요청을 보내고 응답을 받은 후 서버와 연결을 유지하지 않음
 
-# HTTP의 요청 구조
+## HTTP의 요청 구조
 
 ![](https://velog.velcdn.com/images/jjulu0227/post/25e049b6-99e2-47d8-95bc-75ccd0323e4f/image.png)
 
@@ -60,7 +59,7 @@ http, https 등
 `PATCH` - 리소스의 일부를 수정
 `DELETE` - 리소스를 삭제
 
-# HTTP의 응답 구조
+## HTTP의 응답 구조
 
 ![Screenshot 2026-03-23 at 11.22.51 PM.png](attachment:a508c4ea-d49a-4946-b3e0-bb700bca152d:Screenshot_2026-03-23_at_11.22.51_PM.png)
 
@@ -71,7 +70,7 @@ http, https 등
 `404 Not Found` - 지정한 리소스를 찾을 수 없음
 `500 Internal Server Error` - 서버 내부 오류로 요청을 처리할 수 없음
 
-# Front-end와 Back-end
+## Front-end와 Back-end
 
 Front-end - 사용자가 직접 보고 상호작용하는 화면, 사용자 인터페이스(UI)를 개발
 
@@ -85,7 +84,7 @@ DB (DataBase) - 데이터를 체계적으로 모아둔 저장소. 일반적으�
 
 ![](https://velog.velcdn.com/images/jjulu0227/post/7ed5602f-4aa9-4e01-b618-d3c4b0e39104/image.png)
 
-# API와 REST API
+## API와 REST API
 
 - API (Application Programming Interface)
 한 프로그램이 다른 프로그램의 기능이나 데이터를 사용할 수 있도록 미리 정해놓은 약속이자 소통 창구. HTTP 규칙을 바탕으로 요청/응답 형식과 기능 목록을 정의
@@ -126,7 +125,7 @@ REST API는 자원을 고유한 URI로 식별하고, 해당 자원에 대한 행
 - 요약
 REST는 HTTP를 잘 활용하기 위한 원칙이고, restapi는 이 원칙을 준수해 만든 api이자 http의 모범 사례이다.
 
-# Spring과 Spring Boot
+## Spring과 Spring Boot
 
 스프링 (Spring): 자바가 가진 객체 지향의 특징을 잘 살려 자바 백엔드 애플리케이션 개발을 빠르고 안정적으로 할 수 있도록 기본 구조와 규칙을 제공하는 가볍고 편리한 프레임워크이다.
 
