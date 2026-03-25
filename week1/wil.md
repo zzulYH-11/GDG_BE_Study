@@ -13,8 +13,6 @@
 
 ## 클라이언트 - 서버 모델
 
-웹이 동작하는 원리에 대해 알아보자.
-
 클라이언트 - 요청을 보내고 서버의 응답 결과를 받아 사용
 
 서버 - 클라이언트의 요청을 받아 처리하고, 그에 대한 응답을 반환
@@ -50,7 +48,7 @@ http, https 등
 
 ## HTTP의 요청 구조
 
-![](https://velog.velcdn.com/images/jjulu0227/post/25e049b6-99e2-47d8-95bc-75ccd0323e4f/image.png)
+![alt text](images/image1.png)
 
 - HTTP의 주요 메서드
 `GET` - 리소스를 조회
@@ -61,7 +59,7 @@ http, https 등
 
 ## HTTP의 응답 구조
 
-![Screenshot 2026-03-23 at 11.22.51 PM.png](attachment:a508c4ea-d49a-4946-b3e0-bb700bca152d:Screenshot_2026-03-23_at_11.22.51_PM.png)
+![alt text](images/image4.png)
 
 - HTTP의 주요 상태 코드
 `200 OK` - 요청이 성공적으로 처리됨
@@ -82,48 +80,42 @@ DB (DataBase) - 데이터를 체계적으로 모아둔 저장소. 일반적으�
 -> 데이터 중복 해결, 독립성 확보, 무결성 유지
 - 대표적인 DBMS : MySQL, PostgreSQL, MangoDB
 
-![](https://velog.velcdn.com/images/jjulu0227/post/7ed5602f-4aa9-4e01-b618-d3c4b0e39104/image.png)
+![alt text](images/image2.png)
 
-## API와 REST API
+## API 
 
-- API (Application Programming Interface)
-한 프로그램이 다른 프로그램의 기능이나 데이터를 사용할 수 있도록 미리 정해놓은 약속이자 소통 창구. HTTP 규칙을 바탕으로 요청/응답 형식과 기능 목록을 정의
+api(Application Programming Interface)란, 한 프로그램이 다른 프로그램의 기능이나 데이터를 사용할 수 있도록 미리 정해놓은 약속이자 소통 창구. HTTP 규칙을 바탕으로 요청/응답 형식과 기능 목록을 정의
 
-- REST (REpresentational State Transfer)
-네트워크 아키텍처 스타일로, HTTP의 장점을 최대한 활용할 수 있는 아키텍처
 
-- REST의 구성 요소 3가지
+## REST와 REST API
+
+REST (REpresentational State Transfer) :
+네트워크 아키텍처 스타일로, HTTP의 장점을 최대한 활용할 수 있는 아키텍처, 원칙. 
+
+### REST의 구성 요소 3가지
 1. RESOURCE(자원) - URI
 모든 자원은 고유한 ID를 가지며, 이 ID는 /student/1 같은 HTTP URI이다.
 
-uri는 url을 포괄하는 개념으로 자원을 식별하는 문자열이다.
+uri는 자원을 식별하는 문자열, url은 자원을 식별하는 문자열 + 위치까지 알려주는 주소로, uri가 url을 포괄하는 개념이다.
 
-참고 )
+참고 ) path variable
 
-path variable
+: uri 일부를 변수처럼 사용해서 특정 자원을 식별하는 방식 (ex : /members/{memberId})
 
-uri 일부를 변수처럼 사용해서 특정 자원을 식별하는 방식
 
-ex) /members/{memberId}
-
-url은 자원을 식별하는 문자열 + 위치까지 알려주는 주소이다.
-
-1. VERB(행위) - Method
+2. VERB(행위) - Method
 자원을 조작하기 위해 HTTP method를 사용한다.
-2. Representation(표현)
+
+3. Representation(표현)
 서버와 클라이언트가 데이터를 주고 받는 형식으로, JSON 형식이 일반적이다.
 
-- REST API: HTTP의 장점을 최대한 활용하여 설계된 API 가이드라인.
-    - 자원(Resource)은 URI로 식별.
-    - 행위(Verb)는 HTTP 메서드로 표현.
-    - 표현(Representation)은 보통 JSON 형식을 사용.
+REST API :
 
-REST API는 자원을 고유한 URI로 식별하고, 해당 자원에 대한 행위 VERB를 HTTP메서드(get, post, put, delete 등)로 정의하며, 그 결과를 JSON과 같은 표준 형식으로 표혆하는 웹 서비스 아키텍쳐 스타일
+REST API는 자원을 고유한 URI로 식별하고, 해당 자원에 대한 행위 VERB를 HTTP메서드(get, post, put, delete 등)로 정의하며, 그 결과를 JSON과 같은 표준 형식으로 표현하는 웹 서비스 아키텍쳐 스타일로, HTTP의 장점을 최대한 활용하여 설계된 API 가이드라인이라고 생각하면 된다.
 
 - JSON (JavaScript Object Notation )
 자바스크립트의 객체 문법을 기반으로 한 매우 가벼운 데이터 형식으로, 키-값 형태의 단순한 구조를 가진다. 웹 통신에서 데이터를 주고받을 때 널리 쓰인다.
-- 요약
-REST는 HTTP를 잘 활용하기 위한 원칙이고, restapi는 이 원칙을 준수해 만든 api이자 http의 모범 사례이다.
+
 
 ## Spring과 Spring Boot
 
@@ -131,12 +123,11 @@ REST는 HTTP를 잘 활용하기 위한 원칙이고, restapi는 이 원칙을 �
 
 스프링 부트 (Spring Boot): 스프링 프레임워크를 복잡한 초기 설정 없이 빠르고 쉽게 사용할 수 있게 해주는 도구이다.
 
-
 ---
 
 # 2. White Laber Error Page 스크린샷
 
-![alt text](image.png)
+![alt text](images/image3.png)
 
 
 # 3. 온라인 쇼핑몰 프로젝트 API 명세서
