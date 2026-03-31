@@ -2,7 +2,7 @@
 
 ## 스프링 계층 아키텍처 (Spring Layered Architecture)
 
-![](https://velog.velcdn.com/images/jjulu0227/post/67549313-8461-4331-aafa-b7ac8600e5d8/image.png)
+![alt text](images/img1.png)
 
 ### 브라우저 Browser
 
@@ -48,7 +48,7 @@ DB 테이블과 매핑되는 핵심 객체로, 데이터 일관성 및 보안을
 
 @ResponseEntity:  HTTP 응답을 세밀하게 제어할 때 사용. 상태 코드, 헤더, 바디를 직접 설정할 수 있게 도와준다.
 
-![Screenshot 2026-03-30 at 6.10.40 PM.png](attachment:f16c8d33-2616-45e8-ad4d-5e1e3868f6f5:Screenshot_2026-03-30_at_6.10.40_PM.png)
+![alt text](images/img2.png)
 
 @RequiredArgsConstructor : 모든 필드 값을 파라미터로 받는 생성자를 생성해줌
 
@@ -74,7 +74,7 @@ member, product 등 도메인(기능 단위) 별로 패키지를 나누고 그 �
 
 ## 스프링 빈과 의존성 주입
 
-![](https://velog.velcdn.com/images/jjulu0227/post/88a40a2c-5b6c-4923-9442-0102ecc4fd34/image.png)
+![alt text](images/img3.png)
 
 -> 스프링 애플리케이션 구조
 
