@@ -30,10 +30,10 @@ public class ProductService {
     }
 
     //@Transactional(readOnly = true)
-    public Product getProduct(Long itemId) {
+    public Product getProduct(Long productId) {
 
         //실제로 존재하는 product인지 분기처리
-        Product product = productRepository.findById(itemId);
+        Product product = productRepository.findById(productId);
 
         if(product == null){
             throw new RuntimeException ("상품을 찾을 수 없습니다.");
@@ -43,10 +43,10 @@ public class ProductService {
     }
 
     //@Transactional
-    public void updateItem(Long itemId, ItemUpdateRequest request) {
+    public void updateProduct(Long productId, productUpdateRequest request) {
 
         //실제로 존재하는 product인지 분기처리
-        Product product = productRepository.findById(itemId);
+        Product product = productRepository.findById(productId);
 
         if(product == null){
             throw new RuntimeException ("상품을 찾을 수 없습니다.");
@@ -56,13 +56,13 @@ public class ProductService {
     }
 
     //@Transactional
-    public void deleteItem(Long itemId) {
+    public void deleteProduct(Long productId) {
         //실제로 존재하는 product인지 분기처리
-        Product product = productRepository.findById(itemId);
+        Product product = productRepository.findById(productId);
 
         if(product == null){
             throw new RuntimeException ("상품을 찾을 수 없습니다.");
         }
-        productRepository.deleteById(itemId);
+        productRepository.deleteById(productId);
     }
 }

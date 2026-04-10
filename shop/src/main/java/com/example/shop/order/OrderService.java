@@ -52,7 +52,7 @@ public class OrderService {
 
         // 존재하는 주문인지 확인
         if(order == null){
-            throw new RuntimeException("존재하지 않는 주문입니다. " +  ordersId);
+            throw new RuntimeException("존재하지 않는 주문입니다. " +  orderId);
         }
 
         //존재하면 삭제
