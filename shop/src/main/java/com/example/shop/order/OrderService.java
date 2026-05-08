@@ -1,40 +1,68 @@
 package com.example.shop.order;
 
+import com.example.shop.member.Member;
+import com.example.shop.member.MemberRepository;
+import com.example.shop.order.dto.OrderCreateRequest;
+import com.example.shop.product.Product;
+import com.example.shop.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
 
+    @Autowired
+    private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
 
-    //@Transactional
-    public Long createOrder(OrderCreateRequest request) {
+    @Transactional
+    public void createOrder(Long memberId, OrderCreateRequest orderCreateRequest) {
 
-        // 주문한 상품이 품절됐는지 확인
-        Product product = productRepository.findByName(request.getOrderProductName());
-        if(product.getStock() == 0){
-            throw new RuntimeException ("품절된 상품입니다." + request.getOrderProductName());
+        //받아온 멤버 아이디로 멤버 찾고 시간 정보 생성하기
+        Member member = memberRepository.findById(memberId);
+        LocalDateTime orderDateTime = LocalDateTime.now();
+
+        //주문을 생성하고 저장
+        Order order = new Order(member, orderDateTime);
+        orderRepository.saveOrder(order);
+
+        //for문을 돌며 각 상품이 품절이거거나 수량이 부족한지 확인하고 주문 정보에 저장한다
+        for(OrderCreateRequest.ProductDto productDto : orderCreateRequest.getProducts()) {
+
+            // 이름으로 상품 찾아오기
+            Product product = productRepository.findByName(productDto.getName());
+
+            if(product == null) {
+                throw new RuntimeException("존재하지 않는 상품입니다.");
+            }
+            if(product.getQuantity() < productDto.getQuantity()) {
+                throw new RuntimeException("상품의 재고가 부족합니다.");
+            }
+
+            // 상품이 존재하면 주문정보 저장하기
+            OrderProduct orderProduct =
+                    new OrderProduct(order, product, productDto.getQuantity(), productDto.getPrice());
+            orderRepository.saveOrderProduct(orderProduct);
         }
-        // 주문한 상품의 재고가 충분한지 확인
-        if(product.getStock() < request.getOrderQuantity()){
-            throw new RuntimeException ("재고가 부족합니다. 남은 재고량 : " + request.getOrderQuantity());
-        }
-        // 주문 가능한 상품이면 주문 정보 저장
-        Order order = new Order(request.getOrderProductName(), request.getOrderQuantity(), request.getOrderDate());
-        orderRepository.save(order);
-        return order.getId();
     }
 
-    //@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Order> getAllOrders() {
+
         return orderRepository.findAll();
     }
 
-    //@Transactional(readOnly = true)
-    public Order getOrder(Long orderId) {
+    @Transactional(readOnly = true)
+    public List<OrderProduct> getOrder(Long orderId) {
+
         Order order = orderRepository.findById(orderId);
 
         // 존재하는 주문인지 확인
@@ -42,10 +70,12 @@ public class OrderService {
             throw new RuntimeException("존재하지 않는 주문입니다. " +  orderId);
         }
 
-        return order;
+        List<OrderProduct> allProducts = orderRepository.findAllProductsByOrderId(orderId);
+
+        return allProducts;
     }
 
-    //@Transactional
+    @Transactional
     public void deleteOrder(Long orderId) {
 
         Order order = orderRepository.findById(orderId);
@@ -57,7 +87,6 @@ public class OrderService {
 
         //존재하면 삭제
         orderRepository.deleteById(orderId);
-
     }
 
 }

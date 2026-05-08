@@ -21,10 +21,10 @@ public class ProductRepository {
                 .getResultList();
     }
 
-    public Product findByName(String productName) {
+    public Product findByName(String name) {
         List<Product> productList = em.createQuery(
-                "SELECT p FROM Product p WHERE p.productName = :productName", Product.class)
-                .setParameter("productName", productName).getResultList();
+                "SELECT p FROM Product p WHERE p.name = :name", Product.class)
+                .setParameter("name", name).getResultList();
         return productList.isEmpty() ? null : productList.get(0);
     }
 
