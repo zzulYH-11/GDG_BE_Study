@@ -1,28 +1,29 @@
-package com.example.shop.order;
+package com.example.shop.order.Service;
 
-import com.example.shop.member.Member;
-import com.example.shop.member.MemberRepository;
-import com.example.shop.order.dto.OrderCreateRequest;
-import com.example.shop.product.Product;
-import com.example.shop.product.ProductRepository;
+import com.example.shop.member.Entity.Member;
+import com.example.shop.member.Repository.MemberRepository;
+import com.example.shop.order.DTO.OrderCreateRequest;
+import com.example.shop.order.Entity.Order;
+import com.example.shop.order.Entity.OrderProduct;
+import com.example.shop.order.Repository.JpaOrderRepository;
+import com.example.shop.product.DTO.Product;
+import com.example.shop.product.Repository.JpaProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class OrderService {
+public class OrderServiceImpl implements OrderService {
 
-    @Autowired
     private final MemberRepository memberRepository;
-    private final OrderRepository orderRepository;
-    private final ProductRepository productRepository;
+    private final JpaOrderRepository orderRepository;
+    private final JpaProductRepository productRepository;
 
+    @Override
     @Transactional
     public void createOrder(Long memberId, OrderCreateRequest orderCreateRequest) {
 
@@ -54,12 +55,14 @@ public class OrderService {
         }
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<Order> getAllOrders() {
 
         return orderRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<OrderProduct> getOrder(Long orderId) {
 
@@ -75,6 +78,7 @@ public class OrderService {
         return allProducts;
     }
 
+    @Override
     @Transactional
     public void deleteOrder(Long orderId) {
 

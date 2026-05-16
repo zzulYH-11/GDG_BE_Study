@@ -1,5 +1,7 @@
-package com.example.shop.product;
+package com.example.shop.product.Service;
 
+import com.example.shop.product.DTO.Product;
+import com.example.shop.product.Repository.JpaProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,10 +11,11 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository productRepository;
+    private final JpaProductRepository productRepository;
 
+    @Override
     @Transactional
     public Long createProduct(Map<String, Object> params) {
 
@@ -33,11 +36,13 @@ public class ProductService {
         return product.getId();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Product getProduct(Long productId) {
 
@@ -51,6 +56,7 @@ public class ProductService {
         return product;
     }
 
+    @Override
     @Transactional
     public Product updateProduct(Long productId, Map<String, Object> params) {
 
@@ -73,6 +79,7 @@ public class ProductService {
         return product;
     }
 
+    @Override
     @Transactional
     public void deleteProduct(Long productId) {
         //실제로 존재하는 product인지 분기처리

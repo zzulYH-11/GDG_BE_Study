@@ -1,19 +1,21 @@
-package com.example.shop.order;
+package com.example.shop.order.Controller;
 
-import com.example.shop.order.dto.OrderCreateRequest;
+import com.example.shop.order.DTO.OrderCreateRequest;
+import com.example.shop.order.Entity.Order;
+import com.example.shop.order.Entity.OrderProduct;
+import com.example.shop.order.Service.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/orders")
 public class OrderController {
 
-    private final OrderService orderService;
+    private final OrderServiceImpl orderService;
 
     //주문 정보 생성 -> Post , /orders
     @PostMapping("/{memberId}")
@@ -25,6 +27,7 @@ public class OrderController {
     }
 
     // 전체 주문 조회 -> Get , /orders
+
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();

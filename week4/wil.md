@@ -39,7 +39,6 @@
 
 수강신청 테이블을 만들어 PK를 새로 지정하고(등록 번호 , 학번 등)로 하고 여기에 학생 id와 강의 id를 FK로 사용해서 연결해주자
 
-![Screenshot 2026-05-04 at 9.25.37 AM.png](attachment:9fcefb3b-40d8-4e3c-8f9a-e4fb2ba34422:Screenshot_2026-05-04_at_9.25.37_AM.png)
 
 ## ENTITY
 
@@ -61,7 +60,6 @@
 
 엔티티 클래스 내부에 **상대 엔티티 객체**를 필드로 넣어준 뒤
 
-![Screenshot 2026-05-04 at 1.30.43 PM.png](attachment:1fd1d61c-d1c2-4950-a224-4d79aa5b3327:Screenshot_2026-05-04_at_1.30.43_PM.png)
 
 `@ManyToOne`,`@JoinColumn`  어노테이션을 추가해주면 JPA가 알아서 잘 처리해준다.
 

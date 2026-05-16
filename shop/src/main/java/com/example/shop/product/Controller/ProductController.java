@@ -1,20 +1,21 @@
-package com.example.shop.product;
+package com.example.shop.product.Controller;
 
+import com.example.shop.product.DTO.Product;
+import com.example.shop.product.Service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
     //상품 등록 -> Post , /products
     @PostMapping

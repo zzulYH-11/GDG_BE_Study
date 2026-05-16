@@ -1,4 +1,4 @@
-package com.example.shop.member.dto;
+package com.example.shop.member.DTO;
 
 // password, phoneNumber, address
 
