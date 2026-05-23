@@ -1,5 +1,8 @@
 package com.example.shop.member.Service;
 
+import com.example.shop.common.exception.BadRequestException;
+import com.example.shop.common.exception.NotFoundException;
+import com.example.shop.common.message.ErrorMessage;
 import com.example.shop.member.Entity.Member;
 import com.example.shop.member.Repository.MemberRepository;
 import com.example.shop.member.DTO.*;
@@ -9,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
         //이미 존재하는지 확인
         Member existingMember = memberRepository.findByLoginId(request.getLoginId());
         if(existingMember != null){
-            throw new RuntimeException("이미 존재하는 로그인 아이디입니다. : " + request.getLoginId());
+            throw new BadRequestException(ErrorMessage.MEMBER_ALREADY_EXIST + " : " + request.getLoginId());
         }
 
         //저장
@@ -41,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findById(id);
 
         // 실제로 존재하는 id인지 확인
-        if (member == null) { throw new RuntimeException("회원을 찾을 수 없습니다.");}
+        if (member == null) { throw new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND);}
 
         return new MemberDetail(id, member.getPhoneNumber(), member.getAddress(), member.getPoint());
     }
@@ -74,7 +78,7 @@ public class MemberServiceImpl implements MemberService {
 
         //존재하는 회원인지 확인
         if (member == null) {
-            throw new RuntimeException("회원을 찾을 수 없습니다.");
+            throw new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND);
         }
 
         //도메인 객체의 메서드를 활용해 정보 수정
@@ -89,7 +93,7 @@ public class MemberServiceImpl implements MemberService {
 
         //존재하는 회원인지 확인
         if (member == null) {
-            throw new RuntimeException("회원을 찾을 수 없습니다.");
+            throw new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND);
         }
 
         memberRepository.deleteById(id);

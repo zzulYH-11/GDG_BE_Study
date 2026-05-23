@@ -1,19 +1,17 @@
 package com.example.shop.product.Service;
 
-import com.example.shop.product.DTO.Product;
-
-import java.util.List;
-import java.util.Map;
+import com.example.shop.product.DTO.ProductDTO;
+import com.example.shop.product.DTO.ProductListDTO;
 
 public interface ProductService {
 
-    Long createProduct(Map<String, Object> params);
+    Long createProduct(ProductDTO productDTO);
 
-    List<Product> getAllProducts();
+    ProductListDTO getAllProducts();
 
-    Product getProduct(Long productId);
+    ProductDTO getProduct(Long productId);
 
-    Product updateProduct(Long productId, Map<String, Object> params);
+    ProductDTO updateProduct(Long productId, ProductDTO productDTO);
 
     void deleteProduct(Long productId);
 }

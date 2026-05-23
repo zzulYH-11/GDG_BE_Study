@@ -1,6 +1,6 @@
 package com.example.shop.product.Repository;
 
-import com.example.shop.product.DTO.Product;
+import com.example.shop.product.Entity.Product;
 
 import java.util.List;
 

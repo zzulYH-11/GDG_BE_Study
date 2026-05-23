@@ -1,6 +1,6 @@
 package com.example.shop.product.Repository;
 
-import com.example.shop.product.DTO.Product;
+import com.example.shop.product.Entity.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
